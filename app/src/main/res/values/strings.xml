@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IndexThis</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Options</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_options">Options</string>
+</resources>
