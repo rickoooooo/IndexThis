@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public String yacyUser;
     public String yacyPassword;
     public SharedPreferences sharedPref;
-    public String incomingUrl = "";
+    public String defaultDepth;
 
     private String TAG = "IndexThis";
 
@@ -53,5 +53,6 @@ public class MainActivity extends AppCompatActivity {
         yacyHost = sharedPref.getString("host", "");
         yacyUser = sharedPref.getString("user", "admin");
         yacyPassword = sharedPref.getString("password", "");
+        defaultDepth = sharedPref.getString("defaultDepth", "0");
     }
 }

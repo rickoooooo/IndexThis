@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment {
     private String yacyHost;
     private String yacyUser;
     private String yacyPassword;
+    private String defaultDepth;
     private SharedPreferences sharedPref;
 
     private OkHttpClient client;
@@ -81,6 +82,7 @@ public class HomeFragment extends Fragment {
         MainActivity ma = (MainActivity) getActivity();
         sharedPref = ma.getPreferences(Context.MODE_PRIVATE);
         loadPreferences();
+        etDepth.setText(defaultDepth);
 
         // Process incoming data shared from other apps
         Intent intent = ma.getIntent();
@@ -193,6 +195,7 @@ public class HomeFragment extends Fragment {
         yacyHost = sharedPref.getString("host", "");
         yacyUser = sharedPref.getString("user", "admin");
         yacyPassword = sharedPref.getString("password", "");
+        defaultDepth = sharedPref.getString("defaultDepth", "0");
     }
 
     void showSnackbar(int statusCode) {

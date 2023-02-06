@@ -22,6 +22,7 @@ public class OptionsFragment extends Fragment {
     private EditText etYacyUser;
     private EditText etYacyPassword;
     private SharedPreferences sharedPref;
+    private EditText etDefaultDepth;
 
     private FragmentOptionsBinding binding;
 
@@ -40,6 +41,7 @@ public class OptionsFragment extends Fragment {
         etYacyHost = binding.etYacyHost;
         etYacyUser = binding.etYacyUser;
         etYacyPassword = binding.etYacyPassword;
+        etDefaultDepth = binding.etDefaultDepth;
 
         MainActivity ma = (MainActivity)getActivity();
         sharedPref = ma.sharedPref;
@@ -98,6 +100,22 @@ public class OptionsFragment extends Fragment {
             }
         });
 
+        etDefaultDepth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                sharedPref.edit().putString("defaultDepth", etDefaultDepth.getText().toString()).commit();
+            }
+        });
+
         return root;
     }
 
@@ -111,6 +129,7 @@ public class OptionsFragment extends Fragment {
         String yacyHost = sharedPref.getString("host", "");
         String yacyUser = sharedPref.getString("user", "admin");
         String yacyPassword = sharedPref.getString("password", "");
+        String defaultDepth = sharedPref.getString("defaultDepth", "0");
 
         if (yacyHost != null) {
             etYacyHost.setText(yacyHost);
@@ -120,6 +139,11 @@ public class OptionsFragment extends Fragment {
         }
         if (yacyPassword != null) {
             etYacyPassword.setText("********");
+        }
+        if (defaultDepth != null) {
+            etDefaultDepth.setText(defaultDepth);
+        } else {
+            etDefaultDepth.setText("0");
         }
     }
 }
