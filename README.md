@@ -26,4 +26,4 @@ Finally, set your index depth and click "Index This!"
 ![Index It](./screenshots/2023-02-08-08-54-06.png)
 
 ## Contributions
-If you find IndexThis useful and want to make changes, feel free to make a pull request. I'm trying to keep the app as simple as possible. The main area it needs help is in UI design and compatibility with other devices. I've only tested it on my Pixel 4a so far and only in portrait mode.
+If you find IndexThis useful and want to contribute with improvements, feel free to make a pull request. I'm trying to keep the app as simple as possible. The main area it needs help is in UI design and compatibility with other devices. I've only tested it on my Pixel 4a so far and only in portrait mode.
