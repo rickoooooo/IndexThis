@@ -1,6 +1,8 @@
 # IndexThis
 IndexThis is an Android app that allows you to index a URL to a YaCy instance. You can "share" a URL from a browser or other application and choose the indexing depth. You can also manually paste a URL into IndexThis for indexing.
 
+More information can be found at [https://www.richardosgood.com/posts/yacy-personal-search-engine/](https://www.richardosgood.com/posts/yacy-personal-search-engine/)
+
 # Screenshots
 ## Home Screen
 ![Home Screen](./screenshots/2023-02-08-08-41-56.png)
