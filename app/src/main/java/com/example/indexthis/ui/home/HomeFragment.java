@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
-import com.burgstaller.okhttp.digest.Credentials;
+//import com.burgstaller.okhttp.digest.Credentials;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 import com.example.indexthis.MainActivity;
 import com.example.indexthis.R;
@@ -35,12 +35,15 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import okhttp3.Authenticator;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Credentials;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.Route;
 
 public class HomeFragment extends Fragment {
 
@@ -147,13 +150,27 @@ public class HomeFragment extends Fragment {
                         .url(url)
                         .build();
 
+                /*
+                // DIGEST authentication
+
                 final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
                 DigestAuthenticator authenticator = new DigestAuthenticator(new Credentials(yacyUser, yacyPassword));
                 client = new OkHttpClient.Builder()
                         .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
                         .addInterceptor(new AuthenticationCacheInterceptor(authCache))
                         .build();
+                */
 
+                // BASIC auth
+                client = new OkHttpClient.Builder()
+                        .authenticator(new Authenticator() {
+                            @Override
+                            public Request authenticate(Route route, Response response) throws IOException {
+                                String credential = Credentials.basic(yacyUser, yacyPassword);
+                                return response.request().newBuilder().header("Authorization", credential).build();
+                            }
+                        })
+                        .build();
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
